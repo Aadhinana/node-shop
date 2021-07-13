@@ -3,9 +3,9 @@ exports.showMainPage = (req, res, next) => {
 };
 
 exports.showCartPage = (req, res, next) => {
-  return res.end("Cart Page");
+  return res.render("cart");
 };
 
 exports.showOrdersPage = (req, res, next) => {
-  return res.end("The Orders page");
+  return res.render("orders");
 };

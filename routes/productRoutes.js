@@ -2,12 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-  res.end("Products all are listed here");
+  res.render("products");
 });
 
-
 router.get("/:productId", (req, res, next) => {
-  res.end(`${req.params.productId} page`);
+  res.render("productDetail", { productId: req.params.productId });
 });
 
 module.exports = router;
