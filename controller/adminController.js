@@ -10,7 +10,10 @@ exports.showMainAdminPage = async (req, res, next) => {
 };
 
 exports.addProductPage = async (req, res, next) => {
-  return res.render("editaddproduct", { addProduct: true });
+  return res.render("editaddproduct", {
+    addProduct: true,
+    product: { title: "", price: "", description: "" },
+  });
 };
 
 exports.editProductPage = async (req, res, next) => {
@@ -31,5 +34,12 @@ exports.addProduct = async (req, res, next) => {
 };
 
 exports.editProduct = async (req, res, next) => {
-  return res.end("Edit workflow POST");
+  const udpatedDetails = { ...req.body };
+  await Product.findByIdAndUpdate(req.body.productId, {
+    title: udpatedDetails.title,
+    description: udpatedDetails.description,
+    price: udpatedDetails.price,
+  });
+  // console.log(udpatedDetails);
+  return res.redirect("/admin");
 };

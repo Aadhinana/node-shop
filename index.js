@@ -39,7 +39,7 @@ app.use("*", (req, res, next) => {
 mongoose
   .connect(
     "mongodb://localhost:2717/shop?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
   .then(async (conn) => {
     // console.log(conn);
