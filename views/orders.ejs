@@ -5,4 +5,15 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <h1>Orders page</h1>
+    <% if(orders.length == 0) {%>
+        <h3>Orders is empty. Order something.</h3>
+    <% } %>
+    <% for(let i =0; i< orders.length; i++){ %>
+        <h3> <%=  orders[i]._id %>  -> Order ID </h3> 
+        <ul>
+            <% for(let j =0; j< orders[i].products.length; j++){ %>
+                <li> <%= orders[i].products[j].productId %> ---  <%= orders[i].products[j].quantity %> </li>
+            <% } %>
+        </ul>            
+    <% } %>
 <%- include("./partials/end.ejs") %>

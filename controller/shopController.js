@@ -18,8 +18,10 @@ exports.showMainPage = async (req, res, next) => {
   return res.render("products", { admin: false, products: p });
 };
 
-exports.showOrdersPage = (req, res, next) => {
-  return res.render("orders");
+exports.showOrdersPage = async (req, res, next) => {
+  const orders = await Order.find({ userId: req.user }).exec();
+
+  return res.render("orders", { orders: orders });
 };
 
 exports.login = (req, res, next) => {
