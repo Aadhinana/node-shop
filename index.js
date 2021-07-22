@@ -4,6 +4,7 @@ const app = express();
 const PORT = 3000;
 
 const User = require("./model/user");
+const Cart = require("./model/cart");
 
 // Serve Static files
 app.use(express.static("public"));
@@ -17,11 +18,11 @@ const adminRoutes = require("./routes/adminRoutes");
 const productRoutes = require("./routes/productRoutes");
 
 // Add user in MW before adding accounts
-app.use(async (req,res,next) => {
+app.use(async (req, res, next) => {
   const user = await User.findById("60f96cf838b62837dc8df9e4");
   req.user = user._id;
   next();
-})
+});
 
 // Routes
 app.use(shopRoutes);

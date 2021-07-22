@@ -1,5 +1,7 @@
+const mongoose = require("mongoose");
 const Product = require("../model/product");
 const User = require("../model/user");
+const Order = require("../model/order");
 const Cart = require("../model/cart");
 
 const productController = require("./productController");
@@ -46,4 +48,22 @@ exports.loginFlow = async (req, res, next) => {
 
 exports.logout = (req, res, next) => {
   return res.end("Logged out!");
+};
+
+exports.placeOrder = async (req, res, next) => {
+  const cart = await Cart.findOne({ userId: req.user });
+  let productsList = cart.products;
+
+  productsList = productsList.map((prod) => ({
+    productId: prod.productId,
+    quantity: prod.quantity,
+  }));
+  const order = new Order({
+    userId: req.user,
+    products: productsList,
+  });
+  await order.save();
+  cart.products = [];
+  await cart.save();
+  return res.redirect("/");
 };
