@@ -6,92 +6,37 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <div class="container">
-        <h1>Products page . ADMIN -> <%= admin %></h1>
+        <h1>Products you own. ADMIN -> <%= admin %></h1>
         <div class="grid">
-            <div class="card">
-                <div class="card-title">
-                    Product Name
+            <% for(let i=0; i< products.length; i++){ %>
+                <a href="/products/<%=products[i]._id%>">
+                    <div class="card">
+                        <div class="card-title">
+                            <%= products[i].title %>
+                        </div>
+                        <div class="image">
+                            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
+                        </div>
+                        <div>
+                            <%= products[i].description %>
+                        </div>
+                        <div class="card-details">
+                            <!-- Add to cart -->
+                            <form action="">
+                                <button>Add to Cart</button>
+                            </form>
+                            <div class="price"><%= products[i].price %></div>
+                            <% if (admin){ %>
+                                <!-- Edit product -->
+                                <form action="/admin/edit">
+                                    <input type="hidden" name="productId" value=<%= products[i]._id %>>
+                                    <button>Edit Product</button>
+                                </form>
+                        <% } %>
+                    </div>
                 </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">
-                    Product Name
-                </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">
-                    Product Name
-                </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">
-                    Product Name
-                </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">
-                    Product Name
-                </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">
-                    Product Name
-                </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-title">
-                    Product Name
-                </div>
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
-                </div>
-                <div class="card-details">
-                    <button>Add to Cart</button>
-                    <div class="price">Rs. 100</div>
-                </div>
-            </div>
+            </a>
+            <% } %>
         </div>
     </div>
 <%- include("./partials/end.ejs") %>

@@ -1,11 +1,12 @@
 const Product = require("../model/product");
 const User = require("../model/user");
 
+const productController = require("../controller/productController");
+
 // Show all prodcut owned by the user
 exports.showMainAdminPage = async (req, res, next) => {
-  const p = await Product.find({ userId: req.user });
-  console.log(p);
-  return res.render("products", { admin: true });
+  const p = await productController.getProductsOfCurrentUser(req.user);
+  return res.render("products", { admin: true, products: p });
 };
 
 exports.addProductPage = async (req, res, next) => {
@@ -13,7 +14,8 @@ exports.addProductPage = async (req, res, next) => {
 };
 
 exports.editProductPage = async (req, res, next) => {
-  return res.render("editaddproduct", { addProduct: false });
+  const product = await productController.findProductById(req.query.productId);
+  return res.render("editaddproduct", { addProduct: false, product: product });
 };
 
 exports.addProduct = async (req, res, next) => {

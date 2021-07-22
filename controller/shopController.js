@@ -2,19 +2,18 @@ const Product = require("../model/product");
 const User = require("../model/user");
 const Cart = require("../model/cart");
 
+const productController = require("./productController");
+
 const user = new User({
   name: "John Doe",
   email: "johndoe@email.com",
 });
 
-exports.showMainPage = (req, res, next) => {
+exports.showMainPage = async (req, res, next) => {
   // Main landing page of the shop
   // Create a user, create a product and then assign it to this user,
-  return res.render("index");
-};
-
-exports.showCartPage = (req, res, next) => {
-  return res.render("cart");
+  const p = await productController.findAllProducts();
+  return res.render("products", { admin: false, products: p });
 };
 
 exports.showOrdersPage = (req, res, next) => {
