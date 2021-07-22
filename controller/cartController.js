@@ -1,8 +1,11 @@
 const Cart = require("../model/cart");
+const productController = require("./productController");
 const User = require("../model/user");
 
-exports.showCartPage = (req, res, next) => {
-  return res.render("cart");
+exports.showCartPage = async (req, res, next) => {
+  const cart = await Cart.findOne({ userId: req.user });
+  let products = cart.products;
+  return res.render("cart", { products: products });
 };
 
 exports.addToCart = async (req, res, next) => {
