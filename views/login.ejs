@@ -1,19 +1,16 @@
 <%- include("./partials/top.ejs") %>
 <title>Shop!</title>
-<link rel="stylesheet" href="/css/styles.css">
-<link rel="stylesheet" href="/css/card.css">
 </head>
 <body>
     <%- include("./partials/nav.ejs") %>
-    <div class="container">
-        <h1>Login Flow</h1>
-        <form action="/admin/login" method="POST">
+    <div class="container mx-auto mt-6">
+        <form action="/admin/login" method="POST" class="flex flex-col items-center">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+            <input class="border-black border-2 p-2" type="email" name="email" id="email">
             <br>
             <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <button type="submit">Login</button>
+            <input class="border-black border-2 p-2" type="password" name="password" id="password">
+            <button class="p-2 bg-black text-white hover:bg-gray-400 transition mt-6" type="submit">Login</button>
         </form>
     </div>
 <%- include("./partials/end.ejs") %>

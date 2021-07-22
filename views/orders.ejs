@@ -1,19 +1,21 @@
 <%- include("./partials/top.ejs") %>
 <title>Shop!</title>
-<link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <%- include("./partials/nav.ejs") %>
-    <h1>Orders page</h1>
-    <% if(orders.length == 0) {%>
-        <h3>Orders is empty. Order something.</h3>
+    <div class="container mx-auto mt-8" >
+        <% if(orders.length == 0) {%>
+        <h3 class="text-4xl mx-auto mt-6">Orders is empty. Order something.</h3>
     <% } %>
     <% for(let i =0; i< orders.length; i++){ %>
-        <h3> <%=  orders[i]._id %>  -> Order ID </h3> 
-        <ul>
-            <% for(let j =0; j< orders[i].products.length; j++){ %>
-                <li> <%= orders[i].products[j].productId %> ---  <%= orders[i].products[j].quantity %> </li>
-            <% } %>
-        </ul>            
+        <div class="border-black border-2 p-2 mb-6">
+            <h3 class="text-2xl"> <%=  orders[i]._id %>  -> Order ID </h3> 
+            <ul>
+                <% for(let j =0; j< orders[i].products.length; j++){ %>
+                    <li> <%= orders[i].products[j].productId %> ---  <%= orders[i].products[j].quantity %> qty </li>
+                <% } %>
+            </ul>            
+        </div>
     <% } %>
+    </div>
 <%- include("./partials/end.ejs") %>

@@ -1,47 +1,45 @@
 <%- include("./partials/top.ejs") %>
 <title>Shop!</title>
-<link rel="stylesheet" href="/css/styles.css">
-<link rel="stylesheet" href="/css/card.css">
 </head>
-<body>
+<body class="">
     <%- include("./partials/nav.ejs") %>
-    <div class="container">
+    <div class="container mx-auto mt-6">
         <% if(admin){ %>
         <form action="/admin/add" method="GET">
-            <button type="submit">Add Product</button>
+            <button type="submit" class="p-2 bg-black text-white hover:bg-gray-400 transition">Add Product</button>
         </form>
-        <h1>Show details of User here too!</h1>
+        <h1>Show details of User here too! -> TODO</h1>
         <h2>Your products are listed below</h2>
         <% } %>
-        <div class="grid">
+        <div class="grid grid-cols-3 gap-3 mt-6">
             <% for(let i=0; i< products.length; i++){ %>
-                <div class="card">
+                <div class="border-black border-2 border-solid p-2 relative">
                         <a href="/products/<%=products[i]._id%>">
-                        <div class="card-title">
+                        <div class="absolute top-2 left-2 bg-gray-300 text-black text-xl p-2">
                             <%= products[i].title %>
                         </div>
-                        <div class="image">
+                        <div class="">
                             <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
                         </div>
                     </a>
                         <div>
                             <%= products[i].description %>
                         </div>
-                        <div class="card-details">
+                        <div class="flex justify-between items-center">
+                            <div class="price">Rs. <%= products[i].price %></div>
                             <!-- Add to cart -->
                             <% if(!admin){ %>
                             <form action="/cart" method="POST">
                                 <input type="hidden" name="productId" value=<%= products[i]._id %>>
                                 <input type="hidden" name="add" value=true>
-                                <button>Add to Cart</button>
+                                <button class="p-2 bg-black text-white hover:bg-gray-400 transition">Add to Cart</button>
                             </form>
                             <% } %>
-                            <div class="price"><%= products[i].price %></div>
                             <% if (admin){ %>
                                 <!-- Edit product -->
                                 <form action="/admin/edit">
                                     <input type="hidden" name="productId" value=<%= products[i]._id %>>
-                                    <button>Edit Product</button>
+                                    <button class="p-2 bg-black text-white hover:bg-gray-400 transition">Edit Product</button>
                                 </form>
                         <% } %>
                     </div>

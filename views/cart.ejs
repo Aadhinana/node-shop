@@ -1,25 +1,25 @@
 <%- include("./partials/top.ejs") %>
 <title>Shop!</title>
-<link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <%- include("./partials/nav.ejs") %>
-    <h1>Cart page</h1>
-    <% if(products.length == 0) {%>
-        <h3>Cart is empty</h3>
-    <% } %>
-    <% for(let i =0; i< products.length; i++){ %>
-        <form action="/cart" method="POST">
-            <h3> <%=  products[i].productId %> </h3> <span> -----> <%=  products[i].quantity %> </span>
-            <input type="hidden" name="productId" value=<%= products[i].productId %>>
-            <input type="hidden" name="add" value=false>
-            <button type="submit">Remove from cart</button>
-        </form>
-    <% } %>
-    <% if(products.length != 0) {%>
-        <h4>Order Now!</h4>
-        <form action="/order" method="POST">
-            <button type="submit">Order Now</button>
-        </form>
-    <% } %>
+    <div class="container mx-auto">
+        <% if(products.length == 0) {%>
+            <h3 class="mx-auto mt-6 text-4xl">Cart is empty</h3>
+        <% } %>
+        <% for(let i =0; i< products.length; i++){ %>
+            <form action="/cart" method="POST">
+                <h3> <%=  products[i].productId %> </h3> <span> -----> <%=  products[i].quantity %> </span>
+                <input type="hidden" name="productId" value=<%= products[i].productId %>>
+                <input type="hidden" name="add" value=false>
+                <button type="submit" class="p-2 bg-black text-white hover:bg-gray-400 transition">Remove from cart</button>
+            </form>
+        <% } %>
+        <% if(products.length != 0) {%>
+            <h4>Order Now!</h4>
+            <form action="/order" method="POST">
+                <button type="submit" class="p-2 bg-black text-white hover:bg-gray-400 transition">Order Now</button>
+            </form>
+        <% } %>
+    </div>
 <%- include("./partials/end.ejs") %>

@@ -1,12 +1,10 @@
 <%- include("./partials/top.ejs") %>
 <title>Shop!</title>
-<link rel="stylesheet" href="/css/styles.css">
-<link rel="stylesheet" href="/css/card.css">
 </head>
 <body>
     <%- include("./partials/nav.ejs") %>
-    <div class="container">
-        <h1>
+    <div class="container mx-auto mt-6">
+        <h1 class="text-3xl">
             <% if(addProduct){ %>
                 Add Product  
                <% }else{%>
@@ -14,20 +12,20 @@
                <% } %>
         </h1>
         <% if(addProduct){ %>
-            <form action="/products/add" method="POST">
+            <form action="/products/add" method="POST" class="flex flex-col">
            <% }else{%>
-            <form action="/products/edit" method="POST">
+            <form action="/products/edit" method="POST" class="flex flex-col">
            <% } %>
             <label for="title">Name</label>
-            <input type="text" name="title" id="title" value=<%- product.title %>>
+            <input class="border-black border-2 p-2" type="text" name="title" id="title" value=<%- product.title %>>
             <br>
             <label for="price">Price</label>
-            <input type="number" name="price" id="price" value=<%= "" || product.price %>>
+            <input class="border-black border-2 p-2" type="number" name="price" id="price" value=<%= "" || product.price %>>
             <br>
-            <label for="description">description</label>
-            <textarea name="description" id="description" rows="3" ><%= "" || product.description %></textarea>
+            <label for="description">Description</label>
+            <textarea class="border-black border-2 p-2" name="description" id="description" rows="3" ><%= "" || product.description %></textarea>
             <input type="hidden" name="productId" value=<%=product._id%>>
-            <button type="submit">
+            <button type="submit" class="p-2 bg-black text-white hover:bg-gray-400 transition mt-6">
                 <% if(addProduct){ %>
                  Add Product  
                 <% }else{%>
