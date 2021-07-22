@@ -9,4 +9,10 @@ router.get("/cart", shopController.showCartPage);
 
 router.get("/orders", shopController.showOrdersPage);
 
+router.get("/login", shopController.login);
+
+router.post("/login", shopController.loginFlow);
+
+router.post("/logout", shopController.logout);
+
 module.exports = router;

@@ -1,0 +1,19 @@
+<%- include("./partials/top.ejs") %>
+<title>Shop!</title>
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/card.css">
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="container">
+        <h1>Login Flow</h1>
+        <form action="/admin/login" method="POST">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+<%- include("./partials/end.ejs") %>

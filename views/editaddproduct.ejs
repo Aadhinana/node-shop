@@ -1,0 +1,38 @@
+<%- include("./partials/top.ejs") %>
+<title>Shop!</title>
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/card.css">
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="container">
+        <h1>
+            <% if(addProduct){ %>
+                Add Product  
+               <% }else{%>
+                Edit Product
+               <% } %>
+        </h1>
+        <% if(addProduct){ %>
+            <form action="/products/add" method="POST">
+           <% }else{%>
+            <form action="/products/edit" method="POST">
+           <% } %>
+            <label for="title">Name</label>
+            <input type="title" name="title" id="title">
+            <br>
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price">
+            <br>
+            <label for="description">description</label>
+            <textarea name="description" id="description" rows="3"></textarea>
+            <button type="submit">
+                <% if(addProduct){ %>
+                 Add Product  
+                <% }else{%>
+                 Edit Product
+                <% } %>
+            </button>
+        </form>
+    </div>
+<%- include("./partials/end.ejs") %>
