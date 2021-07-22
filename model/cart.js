@@ -20,10 +20,4 @@ const cartSchema = Schema({
   ],
 });
 
-// Add items to cart
-cartSchema.methods.addToCart = function (product) {};
-
-// Remove items from cart
-cartSchema.methods.removeFromCart = function (product) {};
-
 module.exports = mongoose.model("Cart", cartSchema);

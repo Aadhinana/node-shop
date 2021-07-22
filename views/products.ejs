@@ -6,25 +6,35 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <div class="container">
-        <h1>Products you own. ADMIN -> <%= admin %></h1>
+        <% if(admin){ %>
+        <form action="/admin/add" method="GET">
+            <button type="submit">Add Product</button>
+        </form>
+        <h1>Show details of User here too!</h1>
+        <h2>Your products are listed below</h2>
+        <% } %>
         <div class="grid">
             <% for(let i=0; i< products.length; i++){ %>
-                <a href="/products/<%=products[i]._id%>">
-                    <div class="card">
+                <div class="card">
+                        <a href="/products/<%=products[i]._id%>">
                         <div class="card-title">
                             <%= products[i].title %>
                         </div>
                         <div class="image">
                             <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1055&q=80" alt="A book">
                         </div>
+                    </a>
                         <div>
                             <%= products[i].description %>
                         </div>
                         <div class="card-details">
                             <!-- Add to cart -->
-                            <form action="">
+                            <% if(!admin){ %>
+                            <form action="/cart" method="POST">
+                                <input type="hidden" name="productId" value=<%= products[i]._id %>>
                                 <button>Add to Cart</button>
                             </form>
+                            <% } %>
                             <div class="price"><%= products[i].price %></div>
                             <% if (admin){ %>
                                 <!-- Edit product -->
@@ -35,7 +45,6 @@
                         <% } %>
                     </div>
                 </div>
-            </a>
             <% } %>
         </div>
     </div>
