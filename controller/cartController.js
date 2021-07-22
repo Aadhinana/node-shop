@@ -11,17 +11,31 @@ exports.showCartPage = async (req, res, next) => {
 exports.addToCart = async (req, res, next) => {
   // console.log(req.body);
   const pId = req.body.productId;
+  const add = req.body.add;
 
   const cart = await Cart.findOne({ userId: req.user });
   const products = cart.products;
+  // console.log(products, pId);
   const index = products.findIndex((p) => p.productId.toString() == pId);
+
+  if (add === "false") {
+    // remove from cart
+    // if index not found here. Should throw error
+    if (products[index].quantity == 1) {
+      // just one. remove the entire thing
+      products.splice(index, 1);
+    } else {
+      products[index].quantity = products[index].quantity - 1;
+    }
+    await cart.save();
+    return res.redirect("/");
+  }
   // console.log(index);
   if (index === -1) {
     // Added new item in cart
     // console.log(products)
     await products.push({ productId: pId, quantity: 1 });
   } else {
-    const product = products[index];
     products[index].quantity = products[index].quantity + 1;
     // console.log(product);
   }

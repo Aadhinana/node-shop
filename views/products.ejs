@@ -32,6 +32,7 @@
                             <% if(!admin){ %>
                             <form action="/cart" method="POST">
                                 <input type="hidden" name="productId" value=<%= products[i]._id %>>
+                                <input type="hidden" name="add" value=true>
                                 <button>Add to Cart</button>
                             </form>
                             <% } %>
